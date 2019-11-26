@@ -1,10 +1,43 @@
+# PROJECT TITLE
+
+ project consist of how a pdf can be seen as an in app browser.
+
+
+
+# DESCRIPTION
+
+angular project consist of a view that describes how a pdf can be viewed as in-app browser using <i-frame> & creating a pipe that helps in making the url bind with the UI by passing it through the safeResourceUrl.
+
+eg :-
+
+<div *ngIf="dataLocalUrl != undefined">
+  <h5>iframe whit local url</h5>
+  <iframe width="500" height="600" [src]="dataLocalUrl | safeUrl" type="application/pdf"></iframe>
+  <h5>object whit local url</h5>
+</div>
+
+
+pipe :- 
+
+@Pipe({
+  name: 'safeUrl'
+})
+export class SafeUrlPipe implements PipeTransform {
+
+  constructor(private sanitizer: DomSanitizer) { }
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
+
+
 # PdfViewer
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev sercreated using one of several possible dialects of the Markdown langver. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
